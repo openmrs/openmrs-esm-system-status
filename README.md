@@ -35,7 +35,12 @@ To build the project for production:
 npm run build
 ```
 
-This will generate a `dist` folder containing the optimized static assets and HTML files.
+This will generate a `dist` folder containing:
+- `maintenance.html`: A self-contained HTML file (JS/CSS inlined). ~350KB.
+- `dashboard.html`: A self-contained HTML file (JS/CSS inlined). ~460KB.
+- `config.json`: The runtime configuration file.
+
+These single-file outputs are perfect for deployment scenarios like AWS ALB fixed responses or simple buckets.
 
 ## Docker
 
