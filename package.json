@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && PAGE=maintenance vite build && PAGE=dashboard vite build",
+    "build": "tsc && vite build && cp maintenance.html dist/",
     "preview": "vite preview"
   },
   "dependencies": {

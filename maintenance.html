@@ -1,13 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maintenance - OpenMRS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/pages/maintenance/main.tsx"></script>
-  </body>
+    <style>
+        /* Carbon Design System inspired styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #161616;
+            line-height: 1.5;
+        }
+
+        /* Header styles matching Carbon UI Shell */
+        .header {
+            background-color: #161616;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-name {
+            color: #f4f4f4;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-name__prefix {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        /* Content area */
+        .content {
+            margin-top: 48px;
+            padding: 2rem 1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        /* Notification styles matching Carbon InlineNotification */
+        .notification {
+            display: flex;
+            background-color: #e5f6ff;
+            border-left: 3px solid #0f62fe;
+            padding: 1rem;
+            margin: 0;
+            min-height: 2.5rem;
+        }
+
+        .notification__icon {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            margin-top: 0.1875rem;
+        }
+
+        .notification__icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #0f62fe;
+        }
+
+        .notification__details {
+            flex: 1;
+        }
+
+        .notification__title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .notification__subtitle {
+            font-size: 14px;
+            color: #525252;
+            word-break: break-word;
+        }
+
+        /* Responsive design */
+        @media (max-width: 672px) {
+            .container {
+                margin-top: 2rem;
+            }
+            
+            .content {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" aria-label="OpenMRS System Status">
+        <a href="#" class="header-name">
+            <span class="header-name__prefix">OpenMRS</span>
+            <span>System Status</span>
+        </a>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="container">
+            <div class="notification" role="status" aria-live="polite">
+                <div class="notification__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"/>
+                        <path d="M16,11a1.5,1.5,0,1,0-1.5-1.5A1.5,1.5,0,0,0,16,11Z"/>
+                        <path d="M17,22H15V13h2Z"/>
+                    </svg>
+                </div>
+                <div class="notification__details">
+                    <span class="notification__title">Maintenance Mode</span>
+                    <p class="notification__subtitle" id="message">
+                        We are currently undergoing scheduled maintenance. Please check back soon.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Parse URL parameters for custom message
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const customMessage = params.get('reason') || params.get('message');
+            
+            if (customMessage) {
+                const messageElement = document.getElementById('message');
+                messageElement.textContent = customMessage;
+            }
+        })();
+    </script>
+</body>
 </html>

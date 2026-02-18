@@ -36,11 +36,11 @@ npm run build
 ```
 
 This will generate a `dist` folder containing:
-- `maintenance.html`: A self-contained HTML file (JS/CSS inlined). ~350KB.
+- `maintenance.html`: A static HTML file with inline CSS. ~5KB.
 - `dashboard.html`: A self-contained HTML file (JS/CSS inlined). ~460KB.
 - `config.json`: The runtime configuration file.
 
-These single-file outputs are perfect for deployment scenarios like AWS ALB fixed responses or simple buckets.
+The maintenance page is pure HTML/CSS for minimal size and fast loading. The dashboard is a React application with all assets inlined for easy deployment scenarios like AWS ALB fixed responses or simple buckets.
 
 ## Docker
 
@@ -102,10 +102,12 @@ To toggle Demo Mode (simulates status updates):
 │   ├── components/         # Shared Carbon components
 │   ├── config/             # Config & Endpoints
 │   ├── pages/
-│   │   ├── maintenance/    # Maintenance Page Logic
 │   │   └── dashboard/      # Status Dashboard Logic
 │   └── styles/             # Global CSS
-├── vite.config.ts          # Vite MPA Config
+├── maintenance.html        # Static maintenance page (pure HTML/CSS)
+├── dashboard.html          # Dashboard entry point (React app)
+├── vite.config.ts          # Vite build config
 ├── Dockerfile              # Production Build
 └── nginx.conf              # Nginx Config
 ```
+
