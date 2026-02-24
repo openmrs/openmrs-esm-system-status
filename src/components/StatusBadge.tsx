@@ -1,14 +1,14 @@
 import React from 'react';
 import { Tag } from '@carbon/react';
 
-export type StatusType = 'up' | 'down' | 'degraded';
+export type StatusType = 'up' | 'down' | 'degraded' | 'maintenance';
 
 interface StatusBadgeProps {
     status: StatusType;
 }
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
-    let type: 'green' | 'red' | 'warm-gray' = 'green';
+    let type: 'green' | 'red' | 'warm-gray' | 'blue' = 'green';
     let label = 'Unknown';
 
     switch (status) {
@@ -23,6 +23,10 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
         case 'degraded':
             type = 'warm-gray';
             label = 'Degraded Performance';
+            break;
+        case 'maintenance':
+            type = 'blue';
+            label = 'Maintenance';
             break;
     }
 

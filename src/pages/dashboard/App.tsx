@@ -18,10 +18,24 @@ const checkStatus = async (url: string) => {
     try {
         const response = await fetch(url);
 
-        if (response.status === 200) {
+        if (response.status >= 200 && response.status < 300) {
             return {
                 status: 'up' as StatusType,
-                code: 200
+                code: response.status
+            };
+        }
+
+        if (response.status === 503) {
+            return {
+                status: 'maintenance' as StatusType,
+                code: response.status
+            };
+        }
+
+        if (response.status >= 400 && response.status < 600) {
+            return {
+                status: 'down' as StatusType,
+                code: response.status
             };
         }
 
