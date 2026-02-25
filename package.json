@@ -1,0 +1,26 @@
+{
+  "name": "openmrs-esm-system-status",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && cp maintenance.html dist/",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.72.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "swr": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "sass": "^1.77.6",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1",
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}

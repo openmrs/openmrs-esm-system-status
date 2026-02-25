@@ -1,0 +1,12 @@
+{
+    "services": [
+        {
+            "name": "Liveness Probe",
+            "url": "/openmrs/health/alive"
+        },
+        {
+            "name": "Readiness Probe",
+            "url": "/openmrs/health/started"
+        }
+    ]
+}
